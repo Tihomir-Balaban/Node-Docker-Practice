@@ -10,4 +10,4 @@ COPY . /app
 
 CMD ["node", "server.js"]
 
-EXPOSE 80:80
+EXPOSE 80
