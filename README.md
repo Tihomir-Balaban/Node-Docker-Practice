@@ -41,7 +41,8 @@ docker run -d [image_id]                                     // Start a new cont
 docker run -it [image_id]                                    // Start a new container based on image id and uses interactive mode and terminal mode
 docker run --rm [image_id]                                   // Start a new container based on image id and container will be remove automatically
 docker run --name [image_id]                                 // Start a new container based on image id and name it
-docker run -v [external_file:internal_path]                  // Start a new container based on image id and name it
+docker run -v [external_file:internal_path] [image_id]       // Start a new container based on image id and add a volume
+docker run -v [internal_path] [image_id]                     // Start a new container based on image id and add an anonymous volume
 
 // Start
 docker start [container_id_name]                             // Start a container based on container id or name and expose some ports if in the orignal run command -p flag was used
@@ -111,5 +112,10 @@ EXPOSE [port]/[protocol]                                     // Listen to port a
 CMD [ "executable", "parameter", ... ]                       // Set the default executable and parameters for this executing container.
 CMD [ "parameter", "parameter2", ... ]                       // Set the default parameters for this executing container. An ENTRYPOINT instruction must also be specified.
 CMD [executable] [parameter] ...                             // The default executable for this executing container. Set the default executable and parameters for this executing container.
+
+```
+### VOLUME Keyword
+```
+# VOLUME [ "internal/path" ]                                 // Create anonymous volume
 
 ```
