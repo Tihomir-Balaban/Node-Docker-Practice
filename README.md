@@ -4,8 +4,8 @@
 ### General Docker Commands
 #### Process State Commands
 ```
-docker ps       // Show all active containers
-docker ps -a    // Show all containers
+docker ps                                                    // Show all active containers
+docker ps -a                                                 // Show all containers
 
 ```
 ### Images:
@@ -41,6 +41,7 @@ docker run -d [image_id]                                     // Start a new cont
 docker run -it [image_id]                                    // Start a new container based on image id and uses interactive mode and terminal mode
 docker run --rm [image_id]                                   // Start a new container based on image id and container will be remove automatically
 docker run --name [image_id]                                 // Start a new container based on image id and name it
+docker run -v [external_file:internal_path]                  // Start a new container based on image id and name it
 
 // Start
 docker start [container_id_name]                             // Start a container based on container id or name and expose some ports if in the orignal run command -p flag was used
@@ -64,6 +65,51 @@ docker rm [container_id_name]                                // Delete container
 ```
 #### Stop Container Commands
 ```
-docker stop [container_id_name]  // Stop container with given name (name found in process state)
+docker stop [container_id_name]                              // Stop container with given name (name found in process state)
+
+```
+
+#### Volume Commands
+```
+docker volume ls                                             // Lists all volumes
+```
+
+## Dockerfile
+### FROM Keyword
+```
+FROM baseImage                                               // Base image like node for example
+FROM baseImage:tag                                           // Base image with a version tag
+FROM baseImage@digest                                        // Base image with a immutable version
+FROM baseImage AS stage                                      // Base image given an allias for later FROM commands
+FROM baseImage:tag AS stage                                  // Base image combineing tags and allias
+FROM baseImage@digest AS stage                               // Base image combineing digest and allias
+
+```
+### COPY Keyword
+```
+COPY [source_path] [dest_path]                               // Copy file or directory from a external path to and internal container path
+COPY --chown=user:group [source_path] [dest_path]            // Copy file or directory with flag for setting user and/or group permission
+COPY --from=stage [source_path] [dest_path]                  // Copy file or directory with flag for coping file from a different stage aswell
+
+```
+### RUN Keyword
+```
+RUN [command]                                                // Run a shell command
+RUN [command] [parameters]                                   // Run a shell command with a parameter
+RUN [command] -[flags] [parameters]                          // Run a shell command with a parameter and flag
+
+```
+### EXPOSE Keyword
+```
+EXPOSE [port]                                                // Listen to port at runtime
+EXPOSE [port]/[protocol]                                     // Listen to port at runtime and set protocol
+
+```
+
+### CMD Keyword
+```
+CMD [ "executable", "parameter", ... ]                       // Set the default executable and parameters for this executing container.
+CMD [ "parameter", "parameter2", ... ]                       // Set the default parameters for this executing container. An ENTRYPOINT instruction must also be specified.
+CMD [executable] [parameter] ...                             // The default executable for this executing container. Set the default executable and parameters for this executing container.
 
 ```
