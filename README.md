@@ -11,20 +11,29 @@ docker ps -a                                                 // Show all contain
 ### Images:
 #### Build Image Commands
 ```
-// Build
 docker build .                                               // Build image
 docker build -t [name_the_image] .                           // Build image and name it
 docker build -t [name_the_image:tag] .                       // Build image and name it and add tag
+docker build --build-arg [arg_variable_name]=[some_value] .  // Build image and override exsisting build argument
 
-// Remove Image
+```
+
+#### Remove Image Commands
+```
 docker rmi [image_id_name_name:tag]                          // Delete image
 docker image prune                                           // Deletes all unused images
 
-// Image
+```
+
+#### Image Commands
+```
 docker images                                                // Show a list of all images
 docker image inpect [image_id_name_name:tag]                 // Image detailed information
 
-// Push & Pull
+```
+
+#### Push & Pull Commands
+```
 docker push [image_id_name]                                  // Push docker image to docker hub repo
 docker push [host]:[image_id_name]                           // Push docker image to 3de party host repo
 docker pull [image_id_name]                                  // Pull docker image from docker hub repo
@@ -44,28 +53,45 @@ docker run --name [image_id]                                 // Start a new cont
 docker run -v [internal_path] [image_id]                     // Start a new container based on image id and add an Anonymous Volume
 docker run -v [external_folder:internal_path] [image_id]     // Start a new container based on image id and add a Named Volume
 docker run -v [ext_absolute_patj:internal_path] [image_id]   // Start a new container based on image id and add a Bind Mount
-docker run -v [ext_absolute_patj:internal_path]:ro [image_id]// Start a new container based on image id and add a Bind Mount Read oOnly
+docker run -v [ext_absolute_patj:internal_path]:ro [image_id]// Start a new container based on image id and add a Bind Mount Read Only
+docker run -e [env_var_key]=[env_var_value] [image_id]       // Start a new container based on image id and add a custom value for the env variable
+docker run --env-file [.env_file_path] [image_id]            // Start a new container based on image id and getting env variable values from .env
+```
 
-// Start
+#### Start Container Commands
+```
 docker start [container_id_name]                             // Start a container based on container id or name and expose some ports if in the orignal run command -p flag was used
 docker start -a [container_id_name]                          // Start a container based on container id or name in attach mode and expose some ports if in the orignal run command -p flag was used
 docker start -i [container_id_name]                          // Start a container based on container id or name and uses interactive mode
 
-// Attach
+```
+
+#### Attach Container Commands
+```
 docker attach [container_id_name]                            // Attach terminal to a running container based on container id or name and expose some ports if in the orignal run command -p flag was used
 
-// Copy
+```
+
+#### Copy Container Commands
+```
 docker cp [path] [container_name:/path]                      // Copy path to container path
 docker cp [container_name:/path] [path]                      // Copy container path to path
 
-// Logs
+```
+
+#### Logs Container Commands
+```
 docker logs [container_id_name]                              // Check logs of container
 docker logs -f [container_id_name]                           // Check logs of container and turn on follow mode to attach / keep listing to the logs
 
-// Remove
+```
+
+#### Remove Container Commands
+```
 docker rm [container_id_name]                                // Delete container that isn't running
 
 ```
+
 #### Stop Container Commands
 ```
 docker stop [container_id_name]                              // Stop container with given name (name found in process state)
@@ -123,6 +149,18 @@ CMD [executable] [parameter] ...                             // The default exec
 ```
 ### VOLUME Keyword
 ```
-# VOLUME [ "internal/path" ]                                 // Create anonymous volume
+VOLUME [ "internal/path" ]                                   // Create anonymous volume
+
+```
+
+### ENV Keyword
+```
+ENV [env_variable_name] [env_variable_value]                 // Set an environment variable and default value
+
+```
+
+### ENV Keyword
+```
+ARG [arg_variable_name] [arg_variable_value]                 // Set an argument variable and default value
 
 ```
