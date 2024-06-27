@@ -41,8 +41,9 @@ docker run -d [image_id]                                     // Start a new cont
 docker run -it [image_id]                                    // Start a new container based on image id and uses interactive mode and terminal mode
 docker run --rm [image_id]                                   // Start a new container based on image id and container will be remove automatically
 docker run --name [image_id]                                 // Start a new container based on image id and name it
-docker run -v [external_file:internal_path] [image_id]       // Start a new container based on image id and add a volume
-docker run -v [internal_path] [image_id]                     // Start a new container based on image id and add an anonymous volume
+docker run -v [internal_path] [image_id]                     // Start a new container based on image id and add an Anonymous Volume
+docker run -v [external_folder:internal_path] [image_id]     // Start a new container based on image id and add a Named Volume
+docker run -v [ext_absolute_patj:internal_path] [image_id]   // Start a new container based on image id and add a Bind Mount
 
 // Start
 docker start [container_id_name]                             // Start a container based on container id or name and expose some ports if in the orignal run command -p flag was used
